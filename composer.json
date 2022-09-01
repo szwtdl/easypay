@@ -1,0 +1,41 @@
+{
+  "name": "szwtdl/pay",
+  "description": "payment paypal stripe paddle alipay wechat",
+  "type": "libray",
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "Szwtdl\\Pay\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "szwtdl",
+      "email": "szpengjian@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.3",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-bcmath": "*",
+    "ext-libxml": "*",
+    "ext-simplexml": "*",
+    "stripe/stripe-php": "^9.4",
+    "nesbot/carbon": "^2.62",
+    "guzzlehttp/guzzle": "^7.5",
+    "psr/container": "^2.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.10",
+    "phpunit/phpunit": "^9.5"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Szwtdl\\Pay\\ServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
+}
