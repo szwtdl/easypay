@@ -5,6 +5,7 @@
  * @contact  szpengjian@gmail.com
  * @license  https://github.com/szwtdl/easypay/blob/master/LICENSE
  */
+
 namespace EasyPay\Kernel;
 
 use ArrayAccess;
@@ -12,43 +13,75 @@ use EasyPay\Kernel\Contracts\Config as ConfigInterface;
 
 class Config implements ArrayAccess, ConfigInterface
 {
+    protected array $items = [];
+
+    public function __construct(array $items = [])
+    {
+        $this->items = $items;
+    }
+
+    public function __set($name, $value)
+    {
+        $this->items[$name] = $value;
+    }
+
+    public function __get($name)
+    {
+        return $this->items[$name];
+    }
+
     public function offsetExists($offset)
     {
-        // TODO: Implement offsetExists() method.
     }
 
     public function offsetGet($offset)
     {
-        // TODO: Implement offsetGet() method.
+        return $this->items[$offset];
     }
 
     public function offsetSet($offset, $value)
     {
-        // TODO: Implement offsetSet() method.
+        $this->items[$offset] = $value;
     }
 
     public function offsetUnset($offset)
     {
-        // TODO: Implement offsetUnset() method.
+        unset($this->items[$offset]);
+    }
+
+    public function __invoke($key)
+    {
+        return $this->items[$key];
     }
 
     public function all(): array
     {
-        // TODO: Implement all() method.
+        return $this->items;
     }
 
     public function has(string $key): bool
     {
-        // TODO: Implement has() method.
+        if (isset($this->items[$key])) {
+            return true;
+        }
+        return false;
     }
 
     public function set(string $key, mixed $value = null): void
     {
-        // TODO: Implement set() method.
+        $this->items[$key] = $value;
     }
 
     public function get(array|string $key, mixed $default = null): array
     {
-        // TODO: Implement get() method.
+        $data = array();
+        if (is_string($key)) {
+            $data[$key] = $this->items[$key];
+        } elseif (is_array($key)) {
+            foreach ($key as $item) {
+                $data[$item] = $this->items[$item];
+            }
+        }
+        return $data;
     }
 }

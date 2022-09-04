@@ -5,17 +5,18 @@
  * @contact  szpengjian@gmail.com
  * @license  https://github.com/szwtdl/easypay/blob/master/LICENSE
  */
+
 namespace EasyPay\Kernel\Contracts;
 
 interface Payment
 {
-    public function pay($data);
+    public function pay(array $data);
 
-    public function notify($data);
+    public function notify(array $data);
 
     public function verify();
 
-    public function refund($data);
+    public function refund(array $data);
 
-    public function query($data);
+    public function query(array $data);
 }
